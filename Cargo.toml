@@ -1,0 +1,11 @@
+[package]
+name = "dna"
+version = "0.1.0"
+authors = ["Derek Morr <derekmorr@psu.edu>"]
+
+[dependencies]
+bio = "0.21.0"
+
+[profile.release]
+opt-level = 3
+lto = true
