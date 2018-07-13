@@ -26,7 +26,7 @@ fn reverse_complement(sequence: &[u8]) -> String {
         .chars()
         .map(|c| match c {
                 'A' => 'T',
-                'C' => 'C',
+                'C' => 'G',
                 'G' => 'C',
                 'T' => 'A',
                 x => x
