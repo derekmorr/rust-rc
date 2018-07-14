@@ -1,5 +1,6 @@
 extern crate bio;
 
+use std::cmp::min;
 use std::env;
 use bio::io::fasta::Reader;
 
@@ -13,7 +14,7 @@ fn main() {
         let record = result.unwrap();
         println!(">{} {}", record.id(), record.desc().unwrap_or(""));
         let complement = reverse_complement(record.seq());
-        println!("{}", complement);
+        format_output(&complement, 70);
     }
 }
 
@@ -32,4 +33,20 @@ fn reverse_complement(sequence: &[u8]) -> String {
                 x => x
             })
         .collect()
+}
+
+fn format_output(str: &String, line_len: usize) -> () {
+    let mut start = 0;
+    let mut end = min(line_len, str.len());
+
+    while start <= str.len() && end <= str.len() {
+        println!("{}", &str[start..end]);
+        if end + line_len > str.len() {
+            start += line_len;
+            end = str.len();
+        } else {
+            start += line_len;
+            end = min(start + line_len, str.len());
+        }
+    }
 }
