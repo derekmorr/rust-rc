@@ -36,11 +36,14 @@ fn reverse_complement(sequence: &[u8]) -> String {
 }
 
 fn format_output(str: &String, line_len: usize) -> () {
+    
+    let mut buf = String::with_capacity(str.len());
     let mut start = 0;
     let mut end = min(line_len, str.len());
 
     while start <= str.len() && end <= str.len() && start != end {
-        println!("{}", &str[start..end]);
+        buf.push_str(&str[start..end]);
+        buf.push('\n');
         start += line_len;
         if end + line_len > str.len() {
             end = str.len();
@@ -48,4 +51,6 @@ fn format_output(str: &String, line_len: usize) -> () {
             end = min(start + line_len, str.len());
         }
     }
+    
+    print!("{}", buf)
 }
