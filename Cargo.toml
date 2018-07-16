@@ -1,5 +1,5 @@
 [package]
-name = "dna"
+name = "rust-rc"
 version = "0.1.0"
 authors = ["Derek Morr <derekmorr@psu.edu>"]
 

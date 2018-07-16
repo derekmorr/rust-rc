@@ -12,7 +12,7 @@ fn main() {
 
     for result in reader.records() {
         let record = result.unwrap();
-        println!(">{} {}", record.id(), record.desc().unwrap_or(""));
+        println!(">{} {}", record.id(), record.desc().unwrap_or(""));     
         let complement = reverse_complement(record.seq());
         format_output(&complement, 70);
     }
@@ -39,13 +39,12 @@ fn format_output(str: &String, line_len: usize) -> () {
     let mut start = 0;
     let mut end = min(line_len, str.len());
 
-    while start <= str.len() && end <= str.len() {
+    while start <= str.len() && end <= str.len() && start != end {
         println!("{}", &str[start..end]);
+        start += line_len;
         if end + line_len > str.len() {
-            start += line_len;
             end = str.len();
         } else {
-            start += line_len;
             end = min(start + line_len, str.len());
         }
     }
